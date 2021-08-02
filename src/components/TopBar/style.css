@@ -1,0 +1,24 @@
+.terminal_topbar {
+  display: flex;
+  border-radius: 8px 8px 0 0;
+  background-color: #222831;
+  height: 30px;
+  font-size: 14px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px;
+}
+
+.terminal_topbar_left_container {
+  display: flex;
+  align-items: center;
+}
+
+.terminal_topbar_right_container {
+  display: flex;
+  align-items: center;
+}
+
+.icon-button {
+  padding: 4px;
+}

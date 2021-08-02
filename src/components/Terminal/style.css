@@ -1,0 +1,7 @@
+.terminal {
+  border-radius: 8px;
+  width: 960px;
+  height: 480px;
+  background-color: #393e46;
+  box-shadow: 4px 4px 8px #222831;
+}
