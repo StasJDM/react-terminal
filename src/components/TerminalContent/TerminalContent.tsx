@@ -1,9 +1,10 @@
 import React from 'react';
+import TerminalInput from '../TerminalInput/TerminalInput';
 import './style.css';
 
 const TerminalContent = () => (
   <div className='terminal_content'>
-    <span className='greeting'>stas:&gt;</span>terminal...
+    <TerminalInput />
   </div>
 );
 

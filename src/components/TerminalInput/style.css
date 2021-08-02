@@ -1,0 +1,23 @@
+.terminal-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.terminal-greeting {
+  color: #ffd369;
+  margin-right: 4px;
+}
+
+.terminal-input {
+  background: transparent;
+  border: none;
+  font-family: 'Space Mono', monospace;
+  font-size: 18px;
+  color: #ffffff;
+  width: 100%;
+}
+
+.terminal-input:focus {
+  /* background: transparent; */
+  outline: none;
+}
