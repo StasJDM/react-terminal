@@ -8,8 +8,8 @@ import { ReactComponent as CrossSvg } from '../../assets/cross.svg';
 const TopBar = () => (
   <div className='terminal_topbar'>
     <div className='terminal_topbar_left_container'>
-      <ChevronSvg className='icon-button' />
-      Terminal
+      <ChevronSvg />
+      terminal
     </div>
     <div className='terminal_topbar_right_container'>
       <MinusSvg className='icon-button' />
