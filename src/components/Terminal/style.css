@@ -1,5 +1,5 @@
 .terminal {
-  border-radius: 8px;
+  border-radius: 8px 8px 0 0;
   width: 960px;
   height: 480px;
   background-color: #393e46;

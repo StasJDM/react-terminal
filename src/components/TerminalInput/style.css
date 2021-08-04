@@ -9,15 +9,15 @@
 }
 
 .terminal-input {
+  width: 100%;
+  padding: 0;
   background: transparent;
   border: none;
   font-family: 'Space Mono', monospace;
   font-size: 18px;
   color: #ffffff;
-  width: 100%;
 }
 
 .terminal-input:focus {
-  /* background: transparent; */
   outline: none;
 }
