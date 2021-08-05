@@ -1,5 +1,5 @@
 import React, { KeyboardEvent } from 'react';
-import Greeting from '../Greeting/Greeting';
+import TerminalGreeting from '../TerminalGreeting/TerminalGreeting';
 import './style.css';
 
 type TerminalInputProps = {
@@ -24,7 +24,7 @@ const TerminalInput = (props: TerminalInputProps) => {
 
   return (
     <div className='terminal-input-container'>
-      <Greeting />
+      <TerminalGreeting />
       <input
         className='terminal-input'
         onKeyDown={handleOnKeyDownEnter}

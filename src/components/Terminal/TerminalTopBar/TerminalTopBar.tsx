@@ -1,11 +1,11 @@
 import React from 'react';
 import './style.css';
-import { ReactComponent as ChevronSvg } from '../../assets/chevron.svg';
-import { ReactComponent as MinusSvg } from '../../assets/minus.svg';
-import { ReactComponent as SquareSvg } from '../../assets/square.svg';
-import { ReactComponent as CrossSvg } from '../../assets/cross.svg';
+import { ReactComponent as ChevronSvg } from '../../../assets/chevron.svg';
+import { ReactComponent as MinusSvg } from '../../../assets/minus.svg';
+import { ReactComponent as SquareSvg } from '../../../assets/square.svg';
+import { ReactComponent as CrossSvg } from '../../../assets/cross.svg';
 
-const TopBar = () => (
+const TerminalTopBar = () => (
   <div className='terminal_topbar'>
     <div className='terminal_topbar_left_container'>
       <ChevronSvg />
@@ -19,4 +19,4 @@ const TopBar = () => (
   </div>
 );
 
-export default TopBar;
+export default TerminalTopBar;

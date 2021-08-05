@@ -1,9 +1,9 @@
 import React from 'react';
-import Greeting from '../Greeting/Greeting';
+import TerminalGreeting from '../TerminalGreeting/TerminalGreeting';
 
 const TerminalString = ({ value }: { value: string }) => (
   <div>
-    <Greeting />
+    <TerminalGreeting />
     <span>{value}</span>
   </div>
 );
