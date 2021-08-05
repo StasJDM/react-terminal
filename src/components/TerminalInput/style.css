@@ -3,11 +3,6 @@
   align-items: center;
 }
 
-.terminal-greeting {
-  color: #ffd369;
-  margin-right: 4px;
-}
-
 .terminal-input {
   width: 100%;
   padding: 0;

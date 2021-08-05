@@ -1,14 +1,16 @@
-import React, { KeyboardEvent, useState } from 'react';
+import React, { KeyboardEvent } from 'react';
+import Greeting from '../Greeting/Greeting';
 import './style.css';
 
 type TerminalInputProps = {
   value: string;
-  disabled: boolean;
+  autoFocus?: boolean;
+  onChange: (value: string) => void;
   onPressedEnter: () => void;
 };
 
-const TerminalInput = ({ value, disabled, onPressedEnter }: TerminalInputProps) => {
-  const [inputValue, setInputValue] = useState<string>(value);
+const TerminalInput = (props: TerminalInputProps) => {
+  const { value, autoFocus, onChange, onPressedEnter } = props;
 
   const handleOnKeyDownEnter = (event: KeyboardEvent): void => {
     if (event.code === 'Enter') {
@@ -17,22 +19,19 @@ const TerminalInput = ({ value, disabled, onPressedEnter }: TerminalInputProps) 
   };
 
   const handleOnInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
+    onChange(event.target.value);
   };
 
   return (
     <div className='terminal-input-container'>
-      <span className='terminal-greeting'>stas:&gt;</span>
-      {disabled || (
-        <input
-          className='terminal-input'
-          onKeyDown={handleOnKeyDownEnter}
-          onChange={handleOnInputChange}
-          value={inputValue}
-          autoFocus
-        />
-      )}
-      {!disabled || <span>{inputValue}</span>}
+      <Greeting />
+      <input
+        className='terminal-input'
+        onKeyDown={handleOnKeyDownEnter}
+        onChange={handleOnInputChange}
+        value={value}
+        autoFocus={autoFocus}
+      />
     </div>
   );
 };

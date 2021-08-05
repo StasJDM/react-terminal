@@ -1,31 +1,33 @@
 import React from 'react';
 import { useState } from 'react';
 import TerminalInput from '../TerminalInput/TerminalInput';
+import TerminalString from '../TerminalString/TerminalString';
 import './style.css';
 
 const TerminalContent = () => {
-  const onPressedEnter = () => {
-    const oldTerminalStrings = terminalStrings;
-    if (oldTerminalStrings.length) {
-      oldTerminalStrings[oldTerminalStrings.length - 1].disabled = true;
-    }
-    setTerminalStrings([...oldTerminalStrings, { text: '', disabled: false }]);
+  const runCommand = (command: string) => {
+    console.log('RUN>>>', command);
   };
 
-  const [terminalStrings, setTerminalStrings] = useState<{ text: string; disabled: boolean }[]>([
-    { text: '', disabled: false },
-  ]);
+  const onPressedEnter = () => {
+    setTerminalStrings([...terminalStrings, inputValue]);
+    runCommand(inputValue);
+    setInputValue('');
+  };
+
+  const handleOnInputChange = (value: string) => {
+    setInputValue(value);
+  };
+
+  const [terminalStrings, setTerminalStrings] = useState<string[]>([]);
+  const [inputValue, setInputValue] = useState('');
 
   return (
     <div className='terminal_content'>
-      {terminalStrings.map((terminalString, index) => (
-        <TerminalInput
-          onPressedEnter={onPressedEnter}
-          value={terminalString.text}
-          key={index}
-          disabled={terminalString.disabled}
-        />
+      {terminalStrings.map((str, index) => (
+        <TerminalString value={str} key={index} />
       ))}
+      <TerminalInput onPressedEnter={onPressedEnter} autoFocus value={inputValue} onChange={handleOnInputChange} />
     </div>
   );
 };
