@@ -4,13 +4,14 @@ import './style.css';
 
 type TerminalInputProps = {
   value: string;
+  greeting: string;
   autoFocus?: boolean;
   onChange: (value: string) => void;
   onPressedEnter: () => void;
 };
 
 const TerminalInput = (props: TerminalInputProps) => {
-  const { value, autoFocus, onChange, onPressedEnter } = props;
+  const { value, greeting, autoFocus, onChange, onPressedEnter } = props;
 
   const handleOnKeyDownEnter = (event: KeyboardEvent): void => {
     if (event.code === 'Enter') {
@@ -24,7 +25,7 @@ const TerminalInput = (props: TerminalInputProps) => {
 
   return (
     <div className='terminal-input-container'>
-      <TerminalGreeting />
+      <TerminalGreeting value={greeting} />
       <input
         className='terminal-input'
         onKeyDown={handleOnKeyDownEnter}
