@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { GREETING } from '../../../constants/greeting';
 import { CommandsComntroller } from '../../../controllers/commands';
@@ -9,18 +9,18 @@ import './style.css';
 const TerminalContent = () => {
   const [terminalStrings, setTerminalStrings] = useState<{ value: string; greeting?: string }[]>([]);
   const [inputValue, setInputValue] = useState('');
+  const [activeCommand, setActiveCommand] = useState('');
 
-  const runCommand = (command: string) => {
-    const result = CommandsComntroller.runCommand(command);
+  useEffect(() => {
+    const result = CommandsComntroller.runCommand(activeCommand);
     if (result) {
-      setTerminalStrings([...terminalStrings, { value: result }]);
+      setTerminalStrings((state) => [...state, { value: result }]);
     }
-    console.log(result);
-  };
+  }, [activeCommand]);
 
   const onPressedEnter = () => {
     setTerminalStrings([...terminalStrings, { value: inputValue, greeting: GREETING }]);
-    runCommand(inputValue);
+    setActiveCommand(inputValue);
     setInputValue('');
   };
 
