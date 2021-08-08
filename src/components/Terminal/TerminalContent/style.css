@@ -1,4 +1,4 @@
-.terminal_content {
+.terminal-content {
   padding: 4px;
   text-align: left;
   font-family: 'Space Mono', monospace;
@@ -10,15 +10,15 @@
   scrollbar-color: #222831 #393e46;
 }
 
-.terminal_content::-webkit-scrollbar {
+.terminal-content::-webkit-scrollbar {
   width: 6px;
 }
 
-.terminal_content::-webkit-scrollbar-track {
+.terminal-content::-webkit-scrollbar-track {
   background: #393e46;
 }
 
-.terminal_content::-webkit-scrollbar-thumb {
+.terminal-content::-webkit-scrollbar-thumb {
   background-color: #222831;
   border-radius: 4px;
   padding: 2px;

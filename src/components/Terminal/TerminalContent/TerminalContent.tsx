@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { createRef, useEffect } from 'react';
 import { useState } from 'react';
 import { GREETING } from '../../../constants/greeting';
 import { CommandsComntroller } from '../../../controllers/commands';
@@ -10,6 +10,8 @@ const TerminalContent = () => {
   const [terminalStrings, setTerminalStrings] = useState<{ value: string; greeting?: string }[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [activeCommand, setActiveCommand] = useState('');
+
+  const inputRef = createRef<HTMLInputElement>();
 
   useEffect(() => {
     const result = CommandsComntroller.runCommand(activeCommand);
@@ -28,12 +30,19 @@ const TerminalContent = () => {
     setInputValue(value);
   };
 
+  const handleOnClickTerminalContent = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
+
   return (
-    <div className='terminal_content'>
+    <div className='terminal-content' onClick={handleOnClickTerminalContent}>
       {terminalStrings.map((ts, index) => (
         <TerminalString value={ts.value} greeting={ts.greeting} key={index} />
       ))}
       <TerminalInput
+        ref={inputRef}
         onPressedEnter={onPressedEnter}
         value={inputValue}
         greeting={GREETING}

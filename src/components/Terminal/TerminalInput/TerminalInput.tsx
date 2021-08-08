@@ -10,7 +10,7 @@ type TerminalInputProps = {
   onPressedEnter: () => void;
 };
 
-const TerminalInput = (props: TerminalInputProps) => {
+const TerminalInput = React.forwardRef<HTMLInputElement, TerminalInputProps>((props: TerminalInputProps, ref) => {
   const { value, greeting, autoFocus, onChange, onPressedEnter } = props;
 
   const handleOnKeyDownEnter = (event: KeyboardEvent): void => {
@@ -27,6 +27,7 @@ const TerminalInput = (props: TerminalInputProps) => {
     <div className='terminal-input-container'>
       <TerminalGreeting value={greeting} />
       <input
+        ref={ref}
         className='terminal-input'
         onKeyDown={handleOnKeyDownEnter}
         onChange={handleOnInputChange}
@@ -35,6 +36,6 @@ const TerminalInput = (props: TerminalInputProps) => {
       />
     </div>
   );
-};
+});
 
 export default TerminalInput;
