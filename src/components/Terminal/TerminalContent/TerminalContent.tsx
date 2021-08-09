@@ -1,7 +1,7 @@
 import React, { createRef, useEffect } from 'react';
 import { useState } from 'react';
 import { GREETING } from '../../../constants/greeting';
-import { CommandsComntroller } from '../../../controllers/commands';
+import { CommandsComntroller } from '../../../commands/controllers/commands';
 import TerminalInput from '../TerminalInput/TerminalInput';
 import TerminalString from '../TerminalString/TerminalString';
 import './style.css';

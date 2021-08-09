@@ -5,7 +5,7 @@ export interface IFileSystemState {
 export interface IFile {
   name: string;
   type: EFileType;
-  size: string;
+  size?: string;
   children?: IFile[];
   location: string;
 }
