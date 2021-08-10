@@ -9,12 +9,12 @@ import './style.css';
 const TerminalContent = () => {
   const [terminalStrings, setTerminalStrings] = useState<{ value: string; greeting?: string }[]>([]);
   const [inputValue, setInputValue] = useState('');
-  const [activeCommand, setActiveCommand] = useState('');
+  const [activeCommand, setActiveCommand] = useState<{ command: string }>({ command: '' });
 
   const inputRef = createRef<HTMLInputElement>();
 
   useEffect(() => {
-    const result = CommandsComntroller.runCommand(activeCommand);
+    const result = CommandsComntroller.runCommand(activeCommand.command);
     if (result) {
       setTerminalStrings((state) => [...state, { value: result }]);
     }
@@ -22,7 +22,7 @@ const TerminalContent = () => {
 
   const onPressedEnter = () => {
     setTerminalStrings([...terminalStrings, { value: inputValue, greeting: GREETING }]);
-    setActiveCommand(inputValue);
+    setActiveCommand({ command: inputValue });
     setInputValue('');
   };
 
