@@ -6,6 +6,10 @@ export const fileCommandsController = (firstCommand: string, restCommands: strin
   switch (firstCommand) {
     case 'mkdir':
       return FileCommandsService.mkdir(restCommands);
+    case 'pwd':
+      return FileCommandsService.pwd(restCommands);
+    case 'ls':
+      return FileCommandsService.ls(restCommands);
     default:
       return '';
   }
