@@ -1,5 +1,5 @@
 export interface IFileSystemState {
-  home: IFile[];
+  files: IFile[];
 }
 
 export interface IFile {
@@ -7,7 +7,7 @@ export interface IFile {
   type: EFileType;
   size?: string;
   children?: IFile[];
-  location: string;
+  location: string[];
 }
 
 export enum EFileType {

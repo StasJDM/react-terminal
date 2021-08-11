@@ -10,6 +10,8 @@ export const fileCommandsController = (firstCommand: string, restCommands: strin
       return FileCommandsService.pwd(restCommands);
     case 'ls':
       return FileCommandsService.ls(restCommands);
+    case 'cd':
+      return FileCommandsService.cd(restCommands);
     default:
       return '';
   }
