@@ -20,6 +20,10 @@ const TerminalContent = () => {
     }
   }, [activeCommand]);
 
+  useEffect(() => {
+    inputRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [inputRef]);
+
   const onPressedEnter = () => {
     setTerminalStrings([...terminalStrings, { value: inputValue, greeting: GREETING }]);
     setActiveCommand(inputValue);
