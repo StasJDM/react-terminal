@@ -55,8 +55,9 @@ export const FileCommandsService = {
   cd: (argument: string[]): string => {
     if (argument.length > 1) return ECommandMessages.InvalidArgument;
 
-    if (!argument.length) {
+    if (!argument.length || (argument.length === 1 && !argument[0].trim())) {
       store.dispatch(changeLocation([]));
+      return '';
     }
 
     const files: IFile[] = store.getState().fileSystem.files;
