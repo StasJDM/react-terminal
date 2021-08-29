@@ -5,9 +5,12 @@ export interface IFileSystemState {
 export interface IFile {
   name: string;
   type: EFileType;
+  location: string[];
   size?: string;
   children?: IFile[];
-  location: string[];
+  createdAt?: string;
+  modifiedAt?: string;
+  author?: string;
 }
 
 export enum EFileType {
