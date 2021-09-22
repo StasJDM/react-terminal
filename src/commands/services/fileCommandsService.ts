@@ -6,6 +6,7 @@ import { changeLocation } from '../../store/location/locationActions';
 export enum ECommandMessages {
   InvalidArgument = 'Invalid command argument',
   NotADirectory = 'This is not a directory',
+  EmptyFolder = 'Empty folder',
 }
 
 export const FileCommandsService = {
@@ -47,7 +48,9 @@ export const FileCommandsService = {
     };
 
     const listFiles = findFolder(location, files);
-    const listFilesStr = listFiles.map((file) => file.name).reduce((p, n) => p + ' | ' + n);
+    const listFilesStr = listFiles.length
+      ? listFiles.map((file) => file.name).reduce((p, n) => p + ' | ' + n)
+      : ECommandMessages.EmptyFolder;
 
     return listFilesStr;
   },
