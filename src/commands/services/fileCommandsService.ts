@@ -10,13 +10,13 @@ export enum ECommandMessages {
 
 export const FileCommandsService = {
   mkdir: (argument: string[]): string => {
-    if (!argument.length) return '';
+    if (!argument.length) return ECommandMessages.InvalidArgument;
     if (argument.length > 1) return ECommandMessages.InvalidArgument;
 
     const fileName = argument[0];
     const location: string[] = store.getState().location.current;
 
-    store.dispatch(createFile({ name: fileName, type: EFileType.Folder, location }));
+    store.dispatch(createFile({ name: fileName, type: EFileType.Folder, location, children: [] }));
 
     return 'Folder ' + fileName + ' created';
   },
