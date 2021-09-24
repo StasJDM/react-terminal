@@ -1,7 +1,7 @@
 import React, { createRef, useEffect } from 'react';
 import { useState } from 'react';
 import { GREETING } from '../../../constants/greeting';
-import { CommandsComntroller } from '../../../controllers/commands';
+import { CommandsComntroller } from '../../../commands/controllers/commands';
 import TerminalInput from '../TerminalInput/TerminalInput';
 import TerminalString from '../TerminalString/TerminalString';
 import './style.css';
@@ -9,20 +9,24 @@ import './style.css';
 const TerminalContent = () => {
   const [terminalStrings, setTerminalStrings] = useState<{ value: string; greeting?: string }[]>([]);
   const [inputValue, setInputValue] = useState('');
-  const [activeCommand, setActiveCommand] = useState('');
+  const [activeCommand, setActiveCommand] = useState<{ command: string }>({ command: '' });
 
   const inputRef = createRef<HTMLInputElement>();
 
   useEffect(() => {
-    const result = CommandsComntroller.runCommand(activeCommand);
+    const result = CommandsComntroller.runCommand(activeCommand.command);
     if (result) {
       setTerminalStrings((state) => [...state, { value: result }]);
     }
   }, [activeCommand]);
 
+  useEffect(() => {
+    inputRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [inputRef]);
+
   const onPressedEnter = () => {
     setTerminalStrings([...terminalStrings, { value: inputValue, greeting: GREETING }]);
-    setActiveCommand(inputValue);
+    setActiveCommand({ command: inputValue });
     setInputValue('');
   };
 
