@@ -9,6 +9,31 @@ export enum ECommandMessages {
   EmptyFolder = 'Empty folder',
 }
 
+const _findFolder = ([folderName, ...restFoldersNames]: string[], files: IFile[]): IFile[] => {
+  if (!folderName) return files;
+
+  const currentFolder = files.find((file) => file.name === folderName);
+  if (!restFoldersNames.length) {
+    return currentFolder?.children || [];
+  }
+
+  return _findFolder(restFoldersNames, currentFolder?.children || []);
+};
+
+const _isExistPath = ([folderName, ...restFoldersNames]: string[], files: IFile[]): boolean => {
+  const folder = files.find((file) => file.name === folderName);
+
+  if (!folder || folder.type !== EFileType.Folder) {
+    return false;
+  }
+
+  if (restFoldersNames.length) {
+    return folder.children ? _isExistPath(restFoldersNames, folder.children) : false;
+  } else {
+    return true;
+  }
+};
+
 export const FileCommandsService = {
   mkdir: (argument: string[]): string => {
     if (!argument.length) return ECommandMessages.InvalidArgument;
@@ -36,18 +61,7 @@ export const FileCommandsService = {
     const location: string[] = store.getState().location.current;
     const files: IFile[] = store.getState().fileSystem.files;
 
-    const findFolder = ([folderName, ...restFoldersNames]: string[], files: IFile[]): IFile[] => {
-      if (!folderName) return files;
-
-      const currentFolder = files.find((file) => file.name === folderName);
-      if (!restFoldersNames.length) {
-        return currentFolder?.children || [];
-      }
-
-      return findFolder(restFoldersNames, currentFolder?.children || []);
-    };
-
-    const listFiles = findFolder(location, files);
+    const listFiles = _findFolder(location, files);
     const listFilesStr = listFiles.length
       ? listFiles.map((file) => file.name).reduce((p, n) => p + ' | ' + n)
       : ECommandMessages.EmptyFolder;
@@ -64,24 +78,13 @@ export const FileCommandsService = {
     }
 
     const files: IFile[] = store.getState().fileSystem.files;
+    const currentLocation: string[] = store.getState().location.current;
+    const currentLocationFiles = _findFolder(currentLocation, files);
+
     const targetLocation = argument[0].split('/');
 
-    const isExistPath = ([folderName, ...restFoldersNames]: string[], files: IFile[]): boolean => {
-      const folder = files.find((file) => file.name === folderName);
-
-      if (!folder || folder.type !== EFileType.Folder) {
-        return false;
-      }
-
-      if (restFoldersNames.length) {
-        return folder.children ? isExistPath(restFoldersNames, folder.children) : false;
-      } else {
-        return true;
-      }
-    };
-
-    if (isExistPath(targetLocation, files)) {
-      store.dispatch(changeLocation(targetLocation));
+    if (_isExistPath(targetLocation, currentLocationFiles)) {
+      store.dispatch(changeLocation([...currentLocation, ...targetLocation]));
       return '';
     } else {
       return ECommandMessages.NotADirectory;

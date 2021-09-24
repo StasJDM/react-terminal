@@ -10,7 +10,15 @@ const initialState: IFileSystemState = {
       children: [
         { name: 'Documents', type: EFileType.Folder, location: ['home'] },
         { name: 'Pictures', type: EFileType.Folder, location: ['home'] },
-        { name: 'Downloads', type: EFileType.Folder, location: ['/home'] },
+        {
+          name: 'Downloads',
+          type: EFileType.Folder,
+          location: ['/home'],
+          children: [
+            { name: 'Games', type: EFileType.Folder, location: ['home', 'Downloads'] },
+            { name: 'Programs', type: EFileType.Folder, location: ['home', 'Downloads'] },
+          ],
+        },
       ],
     },
   ],
