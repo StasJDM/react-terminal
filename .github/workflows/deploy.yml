@@ -43,5 +43,5 @@ jobs:
           script: |
             docker stop $(docker ps -a -q)
             docker login docker.pkg.github.com -u $GITHUB_USERNAME -p $GITHUB_TOKEN
-            docker pull docker.pkg.github.com/StasJDM/trt-terminal/trt:latest
-            docker run -dit -p 80:80 docker.pkg.github.com/StasJDM/trt-terminal/trt:latest
+            docker pull docker.pkg.github.com/stasjdm/trt-terminal/trt:latest
+            docker run -dit -p 80:80 docker.pkg.github.com/stasjdm/trt-terminal/trt:latest
