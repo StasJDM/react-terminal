@@ -12,6 +12,7 @@
 .terminal_topbar_left_container {
   display: flex;
   align-items: center;
+  pointer-events: none;
 }
 
 .terminal_topbar_right_container {
@@ -27,4 +28,5 @@
 .icon-button:hover {
   border-radius: 4px;
   background-color: #14171d;
+  cursor: pointer;
 }
