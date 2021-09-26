@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN yarn cache clean && yarn --update-checksums
 COPY . ./
-RUN yarn && yarn build
+RUN export GENERATE_SOURCEMAP=false && yarn && yarn build
 
 FROM nginx:stable
 COPY --from=build /usr/src/app/build /usr/share/nginx/html
